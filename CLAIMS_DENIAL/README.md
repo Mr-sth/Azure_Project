@@ -96,5 +96,9 @@ A historical claims dataset with both paid & denied claims is required. Example 
 ## 🎯 Expected Outcome
 - **Predictive AI Tool:** Flags high-risk claims before submission  
 - **Operational Dashboard:** Provides billing teams with actionable insights  
-- **Business Impact:** Prevent 10–30% of denials, reduce appeals, improve cash flow  
+- **Business Impact:** Prevent 10–30% of denials, reduce appeals, improve cash flow
+
+## 🟩📄 Dataset
+- https://www.kaggle.com/datasets/leandrenash/enhanced-health-insurance-claims-dataset?resource=download
+
 
