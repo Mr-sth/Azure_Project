@@ -37,7 +37,7 @@ Claims denials are costly and often preventable. Providers struggle to understan
 **Impact:** Proactively flag high-risk claims → improve clean claim rate, reduce appeals, and speed up cash flow.
 
 ## 🟩📄 Dataset
-- https://www.kaggle.com/datasets/leandrenash/enhanced-health-insurance-claims-dataset?resource=download
+- https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files/cms-2008-2010-data-entrepreneurs-synthetic-public-use-file-de-synpuf/de10-sample-1
 
 ## 📊 Data Requirements
 A historical claims dataset with both paid & denied claims is required. Example fields:
@@ -190,3 +190,4 @@ This document outlines common reasons why healthcare claims may be **denied**, g
 | **Provider-Level Issues**     | ProviderID, ProviderSpecialty, ProviderLocation                        | ProviderSpecialty = "General Practice"; ProcedureCode = "Neurosurgery CPT"; ProviderLocation = "Out-of-network hospital" | Denied → wrong specialty & out-of-network provider           |
 | **Claim Submission Issues**   | ClaimType, ClaimSubmissionMethod, ClaimDate, ClaimID                   | ClaimSubmissionMethod = "Paper"; ClaimType = "Duplicate"; ClaimDate = missing/null | Denied or Pending → missing info / wrong submission method   |
 | **Financial Rules**           | ClaimAmount, PatientIncome, ClaimType                                  | ClaimAmount = $20,000; PatientIncome = $500/month; ClaimType = "Non-covered service" | Denied → cost too high or service not covered               |
+
