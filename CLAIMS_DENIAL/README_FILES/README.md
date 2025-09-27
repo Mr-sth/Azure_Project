@@ -1,28 +1,71 @@
-# AI-Based Claims Denial Predictor
+# 🤖 AI-Based Claims Denial Predictor
 
-## Problem Statement
-Claims denials are costly and often preventable. Providers struggle to understand payer rules and submission errors. Predicting denials before submission can reduce rework and improve revenue cycle management.
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python) ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-0.24-orange?logo=scikit-learn) ![License](https://img.shields.io/badge/License-MIT-green)
 
-## Task
-Train a binary classification model to predict the likelihood of claim denials. Use features such as:
+---
 
-- Procedure codes
-- Provider type
-- Payer ID
+## 🎯 Problem Statement
+Claims denials are **costly and often preventable**. Providers struggle with **complex payer rules** and submission errors.  
+This project uses **AI to predict claim denials before submission**, reducing rework and improving revenue cycle management.
 
-## Required Outcome
-A predictive tool that:
+---
 
-- Flags high-risk claims
-- Provides model performance metrics
-- Includes a dashboard for claim review
+## 📝 Task
+Train a **binary classification model** to predict the likelihood of a claim being denied using features such as:
 
-## AI Concept
-- Binary Classification
-- Feature Engineering
+<details>
+<summary>Key Features (click to expand)</summary>
 
-## Data Engineering
-- Claims history ingestion
-- Model training
-- Scoring pipeline
+- **Procedure codes** (HCPCS/ICD9)  
+- **Provider type**  
+- **Payer ID**  
+- Patient demographics (age, gender, coverage)  
+- Claim amounts, deductibles, and submission details  
 
+</details>
+
+---
+
+## ✅ Required Outcome
+The predictive tool should:
+
+- ⚠️ **Flag high-risk claims**  
+- 📊 Provide **model performance metrics** (accuracy, precision, recall, F1-score)  
+- 🖥️ Include a **dashboard for claim review**  
+
+---
+
+## 💡 AI Concepts
+- **Binary Classification** (Approved vs Denied)  
+- **Feature Engineering** (handling codes, claim amounts, provider info)  
+- **Model Evaluation** (confusion matrix, ROC-AUC, precision-recall curves)  
+
+---
+
+## 🛠️ Data Engineering Workflow
+1. **Claims history ingestion** – Collect and clean datasets  
+2. **Feature preprocessing** – Encode categorical variables, normalize numeric values  
+3. **Model training** – Train classifiers like Logistic Regression, Random Forest, XGBoost  
+4. **Scoring pipeline** – Apply the model to new claims for real-time predictions  
+
+<details>
+<summary>Dataset Columns (click to expand)</summary>
+
+- Patient IDs, claim IDs, and provider IDs  
+- Procedure and diagnosis codes (ICD9, HCPCS)  
+- Claim payment amounts and deductibles  
+- Attending, operating, and other physician NPIs  
+
+</details>
+
+---
+
+## 📂 Dataset
+Synthetic Medicare claims data (DE-SynPUF 20% Sample, 2008–2010) for testing and prototyping:  
+[CMS DE-SynPUF Dataset](https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files/cms-2008-2010-data-entrepreneurs-synthetic-public-use-file-de-synpuf/de10-sample-20)
+
+---
+
+## 📖 References
+- [CMS Synthetic Public Use Files](https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files)  
+- [Scikit-Learn Documentation](https://scikit-learn.org/stable/) 
