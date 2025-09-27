@@ -1,193 +1,150 @@
-# AI-Based Claims Denial Predictor
+# Carrier Claims Data Dictionary
 
-## Problem Statement
-Claims denials are costly and often preventable. Providers struggle to understand payer rules and submission errors. Predicting denials before submission can reduce rework and improve revenue cycle management.
+This table lists all the columns included in the **Carrier Claims dataset** along with their descriptions.
 
-## Task
-Train a binary classification model to predict the likelihood of claim denials. Use features such as:
+| Column Name | Description |
+|-------------|-------------|
+| DESYNPUF_ID | Encrypted unique beneficiary ID (patient identifier) |
+| CLM_ID | Unique identifier for the claim |
+| CLM_FROM_DT | Start date of the claim (service begin date) |
+| CLM_THRU_DT | End date of the claim (service end date) |
+| ICD9_DGNS_CD_1–8 | ICD-9 diagnosis codes associated with the claim (up to 8 diagnoses) |
+| PRF_PHYSN_NPI_1–13 | National Provider Identifier (NPI) of the performing physician(s) linked to the claim (up to 13) |
+| TAX_NUM_1–13 | Tax identification numbers of the billing provider(s) (up to 13) |
+| HCPCS_CD_1–13 | HCPCS/CPT procedure codes billed in the claim (up to 13 line items) |
+| LINE_NCH_PMT_AMT_1–13 | Payment amount made by Medicare for each service line |
+| LINE_BENE_PTB_DDCTBL_AMT_1–13 | Deductible amount the beneficiary is responsible for each service line |
+| LINE_BENE_PRMRY_PYR_PD_AMT_1–13 | Amount paid by a primary payer (if Medicare is secondary) for each service line |
+| LINE_COINSRNC_AMT_1–13 | Coinsurance amount the beneficiary must pay for each service line |
+| LINE_ALOWD_CHRG_AMT_1–13 | Allowed charge amount (maximum covered charge) per service line |
+| LINE_PRCSG_IND_CD_1–13 | Line processing indicator code (used in Medicare claims adjudication) |
+| LINE_ICD9_DGNS_CD_1–13 | Diagnosis codes associated specifically with each line item (ICD-9) |
 
-- Procedure codes
-- Provider type
-- Payer ID
 
-## Required Outcome
-A predictive tool that:
+# Beneficiary Data Dictionary
 
-- Flags high-risk claims
-- Provides model performance metrics
-- Includes a dashboard for claim review
+This table lists all the columns included in the **Beneficiary dataset** along with their descriptions.
 
-## AI Concept
-- Binary Classification
-- Feature Engineering
+| Column Name | Description |
+|-------------|-------------|
+| DESYNPUF_ID | Encrypted unique beneficiary ID (patient identifier) |
+| BENE_BIRTH_DT | Date of birth of the beneficiary |
+| BENE_DEATH_DT | Date of death of the beneficiary (if applicable) |
+| BENE_SEX_IDENT_CD | Sex code of the beneficiary (1 = Male, 2 = Female) |
+| BENE_RACE_CD | Race code of the beneficiary (categories per CMS coding) |
+| BENE_ESRD_IND | End-Stage Renal Disease (ESRD) indicator (Y/N) |
+| SP_STATE_CODE | State code of the beneficiary’s residence |
+| BENE_COUNTY_CD | County code of the beneficiary’s residence |
+| BENE_HI_CVRAGE_TOT_MONS | Total months of Part A (Hospital Insurance) coverage |
+| BENE_SMI_CVRAGE_TOT_MONS | Total months of Part B (Supplementary Medical Insurance) coverage |
+| BENE_HMO_CVRAGE_TOT_MONS | Total months of HMO (Medicare Advantage) coverage |
+| PLAN_CVRG_MOS_NUM | Number of months enrolled in a Medicare Advantage plan |
+| SP_ALZHDMTA | Chronic condition flag: Alzheimer’s disease/dementia |
+| SP_CHF | Chronic condition flag: Congestive Heart Failure |
+| SP_CHRNKIDN | Chronic condition flag: Chronic Kidney Disease |
+| SP_CNCR | Chronic condition flag: Cancer |
+| SP_COPD | Chronic condition flag: Chronic Obstructive Pulmonary Disease |
+| SP_DEPRESSN | Chronic condition flag: Depression |
+| SP_DIABETES | Chronic condition flag: Diabetes |
+| SP_ISCHMCHT | Chronic condition flag: Ischemic Heart Disease |
+| SP_OSTEOPRS | Chronic condition flag: Osteoporosis |
+| SP_RA_OA | Chronic condition flag: Rheumatoid Arthritis / Osteoarthritis |
+| SP_STRKETIA | Chronic condition flag: Stroke / Transient Ischemic Attack |
+| MEDREIMB_IP | Medicare reimbursement amount for inpatient claims |
+| BENRES_IP | Beneficiary responsibility (deductible/coinsurance) for inpatient claims |
+| PPPYMT_IP | Primary payer paid amount for inpatient claims (if Medicare is secondary) |
+| MEDREIMB_OP | Medicare reimbursement amount for outpatient claims |
+| BENRES_OP | Beneficiary responsibility for outpatient claims |
+| PPPYMT_OP | Primary payer paid amount for outpatient claims |
+| MEDREIMB_CAR | Medicare reimbursement amount for carrier (Part B physician/supplier) claims |
+| BENRES_CAR | Beneficiary responsibility for carrier claims |
+| PPPYMT_CAR | Primary payer paid amount for carrier claims |
 
-## Data Engineering
-- Claims history ingestion
-- Model training
-- Scoring pipeline
+# Inpatient Claims Data Dictionary
 
-## DETAILS
+This table lists all the columns included in the **Inpatient (IP) claims dataset** along with their descriptions.
 
-# 🏥 AI-Based Claims Denial Predictor
+| Column Name | Description |
+|-------------|-------------|
+| DESYNPUF_ID | Encrypted unique beneficiary ID (patient identifier) |
+| CLM_ID | Unique identifier for the inpatient claim |
+| SEGMENT | Segment code (used for splitting large claims records) |
+| CLM_FROM_DT | Claim start date (inpatient admission begin date) |
+| CLM_THRU_DT | Claim end date (inpatient discharge date) |
+| PRVDR_NUM | Provider number (facility ID) |
+| CLM_PMT_AMT | Claim payment amount reimbursed by Medicare |
+| NCH_PRMRY_PYR_CLM_PD_AMT | Amount paid by the primary payer (if Medicare is secondary) |
+| AT_PHYSN_NPI | Attending physician’s National Provider Identifier (NPI) |
+| OP_PHYSN_NPI | Operating physician’s NPI |
+| OT_PHYSN_NPI | Other physician’s NPI (if applicable) |
+| CLM_ADMSN_DT | Date of admission |
+| ADMTNG_ICD9_DGNS_CD | ICD-9 admitting diagnosis code |
+| CLM_PASS_THRU_PER_DIEM_AMT | Per diem pass-through amount |
+| NCH_BENE_IP_DDCTBL_AMT | Inpatient deductible amount beneficiary is responsible for |
+| NCH_BENE_PTA_COINSRNC_LBLTY_AM | Beneficiary’s coinsurance liability for inpatient stay |
+| NCH_BENE_BLOOD_DDCTBL_LBLTY_AM | Beneficiary’s blood deductible liability |
+| CLM_UTLZTN_DAY_CNT | Number of utilization days (length of stay) |
+| NCH_BENE_DSCHRG_DT | Date of discharge |
+| CLM_DRG_CD | Diagnosis Related Group (DRG) code |
+| ICD9_DGNS_CD_1–10 | ICD-9 diagnosis codes associated with the claim (up to 10) |
+| ICD9_PRCDR_CD_1–6 | ICD-9 procedure codes associated with the claim (up to 6) |
+| HCPCS_CD_1–45 | HCPCS/CPT procedure codes billed within the claim (up to 45) |
 
-## 📌 Problem Statement
-Claims denials are costly and often preventable. Providers struggle to understand payer rules and submission errors. Predicting denials before submission can reduce rework and improve revenue cycle management.
+# Outpatient Claims Data Dictionary
 
-**Goal:** Train a binary classification model to predict claim denial likelihood.  
-**Impact:** Proactively flag high-risk claims → improve clean claim rate, reduce appeals, and speed up cash flow.
+This table lists all the columns included in the **Inpatient (IP) claims dataset** along with their descriptions.
 
-## 🟩📄 Dataset
-- https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files/cms-2008-2010-data-entrepreneurs-synthetic-public-use-file-de-synpuf/de10-sample-1
+| Column Name | Description |
+|-------------|-------------|
+| DESYNPUF_ID | Encrypted unique beneficiary ID (patient identifier) |
+| CLM_ID | Unique identifier for the inpatient claim |
+| SEGMENT | Segment code (used for splitting large claims records) |
+| CLM_FROM_DT | Claim start date (inpatient admission begin date) |
+| CLM_THRU_DT | Claim end date (inpatient discharge date) |
+| PRVDR_NUM | Provider number (facility ID) |
+| CLM_PMT_AMT | Claim payment amount reimbursed by Medicare |
+| NCH_PRMRY_PYR_CLM_PD_AMT | Amount paid by the primary payer (if Medicare is secondary) |
+| AT_PHYSN_NPI | Attending physician’s National Provider Identifier (NPI) |
+| OP_PHYSN_NPI | Operating physician’s NPI |
+| OT_PHYSN_NPI | Other physician’s NPI (if applicable) |
+| CLM_ADMSN_DT | Date of admission |
+| ADMTNG_ICD9_DGNS_CD | ICD-9 admitting diagnosis code |
+| CLM_PASS_THRU_PER_DIEM_AMT | Per diem pass-through amount |
+| NCH_BENE_IP_DDCTBL_AMT | Inpatient deductible amount beneficiary is responsible for |
+| NCH_BENE_PTA_COINSRNC_LBLTY_AM | Beneficiary’s coinsurance liability for inpatient stay |
+| NCH_BENE_BLOOD_DDCTBL_LBLTY_AM | Beneficiary’s blood deductible liability |
+| CLM_UTLZTN_DAY_CNT | Number of utilization days (length of stay) |
+| NCH_BENE_DSCHRG_DT | Date of discharge |
+| CLM_DRG_CD | Diagnosis Related Group (DRG) code |
+| ICD9_DGNS_CD_1–10 | ICD-9 diagnosis codes associated with the claim (up to 10) |
+| ICD9_PRCDR_CD_1–6 | ICD-9 procedure codes associated with the claim (up to 6) |
+| HCPCS_CD_1–45 | HCPCS/CPT procedure codes billed within the claim (up to 45) |
 
-## 📊 Data Requirements
-A historical claims dataset with both paid & denied claims is required. Example fields:
+# Outpatient Dataset
 
-- Claim-Level: Claim ID, Claim Amount, Claim Type, Submission Date, Resubmission Flag  
-- Provider & Facility: Provider ID, Provider Type, Specialty, Facility Type  
-- Payer: Payer ID, Plan Type (Commercial, Medicare, Medicaid)  
-- Procedure & Diagnosis: CPT/HCPCS Codes, ICD-10 Codes, Number of Procedures  
-- Target Variable: `denied_flag` (1 = Denied, 0 = Paid)  
+This dataset contains outpatient claims data with patient, provider, diagnosis, and procedure details.
 
-## 🔧 Solution Approach
+| Column Name                     | Description                                                                 |
+|---------------------------------|-----------------------------------------------------------------------------|
+| DESYNPUF_ID                      | Encrypted unique beneficiary ID (patient identifier)                                                   |
+| CLM_ID                           | Unique identifier for the inpatient claim                                                                  |
+| SEGMENT                          | Segment of the claim dataset                                                |
+| CLM_FROM_DT                      | Claim start date                                                            |
+| CLM_THRU_DT                      | Claim end date                                                              |
+| PRVDR_NUM                        | Provider number                                                              |
+| CLM_PMT_AMT                      | Claim payment amount                                                        |
+| NCH_PRMRY_PYR_CLM_PD_AMT         | Primary payer claim paid amount                                             |
+| AT_PHYSN_NPI                     | Attending physician NPI                                                     |
+| OP_PHYSN_NPI                     | Operating physician NPI                                                     |
+| OT_PHYSN_NPI                     | Other physician NPI                                                         |
+| NCH_BENE_BLOOD_DDCTBL_LBLTY_AM   | Blood deductible liability amount                                           |
+| ICD9_DGNS_CD_1 to ICD9_DGNS_CD_10| Diagnosis codes 1–10                                                        |
+| ICD9_PRCDR_CD_1 to ICD9_PRCDR_CD_6| Procedure codes 1–6                                                        |
+| NCH_BENE_PTB_DDCTBL_AMT          | Patient Part B deductible amount                                            |
+| NCH_BENE_PTB_COINSRNC_AMT        | Patient Part B coinsurance amount                                           |
+| ADMTNG_ICD9_DGNS_CD              | Admitting diagnosis code                                                    |
+| HCPCS_CD_1 to HCPCS_CD_45        | HCPCS procedure codes 1–45                                                 |
 
-### 1️⃣ Data Engineering
-- Ingest raw claims data (SQL, CSV, Snowflake, Oracle, etc.)
-- Handle missing values and normalize categorical fields
-- Scale numerical features (e.g., log-transform claim amount)
 
-### 2️⃣ Feature Engineering
-- Denial frequency by procedure code + payer
-- Provider’s historical denial rate
-- Claim amount buckets (Low/Medium/High)
-- Time-based submission features
 
-### 3️⃣ Model Training
-- **Baseline:** Logistic Regression (interpretability)  
-- **Advanced:** Random Forest, XGBoost, LightGBM  
-- **Optional:** Deep Learning (Tabular Transformers)  
-
-**Evaluation Metrics:**  
-- AUC-ROC → classification power  
-- Precision, Recall → focus on false negatives  
-- F1 Score → balance  
-
-### 4️⃣ Model Scoring Pipeline
-- **Input:** New claim record (procedure code, provider, payer, etc.)  
-- **Output:** Denial probability (0–1)  
-- **Threshold:** Flag claims where p(denial) > 0.7  
-
-## 📊 Dashboard for Claim Review
-**Example: High-Risk Claims Table**
-
-| Claim ID | Provider    | Payer   | CPT   | Predicted Risk | Status        |
-|----------|------------|--------|-------|----------------|---------------|
-| C001     | Dr. Smith  | Aetna  | 99213 | 0.82           | ⚠️ High Risk  |
-| C002     | Dr. Lee    | Medicare | 99285 | 0.15           | ✅ Low Risk   |
-
-**Key Features:**  
-- % of claims flagged high risk  
-- Top denial-prone CPT codes  
-- Denial trends by payer & provider  
-- Confusion Matrix + ROC Curve  
-
-## 🛠️ Tech Stack
-- **Data Engineering:** Python (Pandas, SQL), Airflow  
-- **Machine Learning:** Scikit-learn, XGBoost, LightGBM  
-- **Dashboard:** Power BI, Tableau, or Streamlit  
-- **Deployment:** Flask/FastAPI, Docker  
-
-## 🎯 Expected Outcome
-- **Predictive AI Tool:** Flags high-risk claims before submission  
-- **Operational Dashboard:** Provides billing teams with actionable insights  
-- **Business Impact:** Prevent 10–30% of denials, reduce appeals, improve cash flow
-
----
-  
-# 🏥 Claims Denial Scenarios
-
-This document outlines common reasons why healthcare claims may be **denied**, grouped into categories based on data fields.  
-
----
-
-## 1. Eligibility Issues (Patient-Level)
-
-**Fields:** `PatientID`, `ClaimDate`, `PatientEmploymentStatus`, `PatientMaritalStatus`, `PatientIncome`
-
-**Example:**
-- `ClaimDate = 6/7/2024`  
-- `PatientEmploymentStatus = "Unemployed"` → insurance might have expired if tied to employer.  
-
-✅ **Result:** Denied  
-
----
-
-## 2. Medical Necessity Issues (Diagnosis & Procedure Codes)
-
-**Fields:** `DiagnosisCode`, `ProcedureCode`, `PatientAge`, `PatientGender`
-
-**Example:**
-- `DiagnosisCode = "Cough"`  
-- `ProcedureCode = "MRI Brain"` (expensive, unrelated to cough)  
-- `PatientAge = 12`  
-
-✅ **Result:** Denied (procedure not medically justified for diagnosis/age)  
-
----
-
-## 3. Provider-Level Issues
-
-**Fields:** `ProviderID`, `ProviderSpecialty`, `ProviderLocation`
-
-**Example:**
-- `ProviderSpecialty = "General Practice"`  
-- `ProcedureCode = "Neurosurgery CPT"`  
-- `ProviderLocation = "Out-of-network hospital"`  
-
-✅ **Result:** Denied (wrong specialty & out-of-network provider)  
-
----
-
-## 4. Claim Submission Issues
-
-**Fields:** `ClaimType`, `ClaimSubmissionMethod`, `ClaimDate`, `ClaimID`
-
-**Example:**
-- `ClaimSubmissionMethod = "Paper"` (payer only accepts **Electronic**)  
-- `ClaimType = "Duplicate"` (same claim already submitted for same patient/date/procedure)  
-- `ClaimDate = missing/null`  
-
-✅ **Result:** Denied or Pending  
-
----
-
-## 5. Financial Rules
-
-**Fields:** `ClaimAmount`, `PatientIncome`, `ClaimType`
-
-**Example:**
-- `ClaimAmount = $20,000` for outpatient visit  
-- `PatientIncome = $500/month` → payer suspects **fraud** or requests extra documentation  
-- `ClaimType = "Non-covered service"` (e.g., cosmetic surgery)  
-
-✅ **Result:** Denied  
-
----
-
-## 🔎 Quick Summary in Plain English
-
-- If the **patient info** doesn’t match insurance records → ❌ Denial  
-- If the **procedure** doesn’t match the diagnosis → ❌ Denial  
-- If the **provider** is wrong/out-of-network → ❌ Denial  
-- If the **claim** is missing info or submitted incorrectly → ❌ Denial  
-- If the **cost** is too high or service is not covered → ❌ Denial
-
- # 🏥 Claims Denial Cheat Sheet
-
-| Category                     | Fields                                                                 | Example                                                                 | Result / Reason                                               |
-|-------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------|
-| **Eligibility Issues**        | PatientID, ClaimDate, PatientEmploymentStatus, PatientMaritalStatus, PatientIncome | ClaimDate = 6/7/2024; PatientEmploymentStatus = "Unemployed" → insurance may have expired | Denied → patient info doesn’t match insurance records        |
-| **Medical Necessity Issues**  | DiagnosisCode, ProcedureCode, PatientAge, PatientGender                | DiagnosisCode = "Cough"; ProcedureCode = "MRI Brain"; PatientAge = 12   | Denied → procedure not justified for diagnosis/age           |
-| **Provider-Level Issues**     | ProviderID, ProviderSpecialty, ProviderLocation                        | ProviderSpecialty = "General Practice"; ProcedureCode = "Neurosurgery CPT"; ProviderLocation = "Out-of-network hospital" | Denied → wrong specialty & out-of-network provider           |
-| **Claim Submission Issues**   | ClaimType, ClaimSubmissionMethod, ClaimDate, ClaimID                   | ClaimSubmissionMethod = "Paper"; ClaimType = "Duplicate"; ClaimDate = missing/null | Denied or Pending → missing info / wrong submission method   |
-| **Financial Rules**           | ClaimAmount, PatientIncome, ClaimType                                  | ClaimAmount = $20,000; PatientIncome = $500/month; ClaimType = "Non-covered service" | Denied → cost too high or service not covered               |
 
