@@ -30,7 +30,7 @@ Train a **binary classification model** to predict the likelihood of a claim bei
 The predictive tool should:
 
 - ⚠️ **Flag high-risk claims**  
-- 📊 Provide **model performance metrics** (accuracy, precision, recall, F1-score)  
+- 📊 Provide **model performance metrics** (accuracy, precision)  
 - 🖥️ Include a **dashboard for claim review**  
 
 ---
@@ -38,15 +38,13 @@ The predictive tool should:
 ## 💡 AI Concepts
 - **Binary Classification** (Approved vs Denied)  
 - **Feature Engineering** (handling codes, claim amounts, provider info)  
-- **Model Evaluation** (confusion matrix, ROC-AUC, precision-recall curves)  
 
 ---
 
 ## 🛠️ Data Engineering Workflow
 1. **Claims history ingestion** – Collect and clean datasets  
 2. **Feature preprocessing** – Encode categorical variables, normalize numeric values  
-3. **Model training** – Train classifiers like Logistic Regression, Random Forest, XGBoost  
-4. **Scoring pipeline** – Apply the model to new claims for real-time predictions  
+3. **Model training** – Train classifiers like Logistic Regression
 
 <details>
 <summary>Dataset Columns (click to expand)</summary>
