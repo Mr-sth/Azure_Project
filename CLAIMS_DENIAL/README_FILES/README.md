@@ -68,4 +68,8 @@ Synthetic Medicare claims data (DE-SynPUF 20% Sample, 2008–2010) for testing a
 
 ## 📖 References
 - [CMS Synthetic Public Use Files](https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files)  
-- [Scikit-Learn Documentation](https://scikit-learn.org/stable/) 
+- [Scikit-Learn Documentation](https://scikit-learn.org/stable/)
+
+## Sample
+<img width="1623" height="700" alt="image" src="https://github.com/user-attachments/assets/6864afd7-3e21-4533-9610-0c1d81cc7544" />
+
